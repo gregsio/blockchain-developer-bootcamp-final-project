@@ -26,12 +26,11 @@
 ## ADD-ONS
 
 ### 1.  Refund donors if the campaign minimum requirement is not reached by end of fundraising campaign,
-
-* Introduces a timebased dependency on the smart contract, which may introduce security weekness if based on block number or epoc.
+* Introduces a timebased dependency on the smart contract, which may introduce security weakness if based on block number or epoc [SWC-116](https://swcregistry.io/docs/SWC-116)
 * What is the proper way of running a countdown counter? Oracle to check time?
 
 ### 2. ERC-20 airdropped
- * creating an second contract for generating the ERC-20
+ * creating an second contract for generating an ERC-20
  * cross contract communication to trigger sending ERC-20 tokens to the donors upon succesful call to `Deposit()`
 
 ### 3. Donation matching up to 5k USD to offer a charity
@@ -43,7 +42,6 @@ Likely not the most efficient way though
 
 
 ### 5. Allow several fundraising campaigns.
-
  * `function createCampaign(uint256 viableMinimum, uint256 goal) public owner`
  * Makes the frontend more complicated,
  * Requires a map to keep track of funds for each campaigns
