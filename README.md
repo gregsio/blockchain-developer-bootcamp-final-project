@@ -1,45 +1,51 @@
 # blockchain-developer-bootcamp-final-project
 
-# CROWDFUNDING
+# *CROWDFUNDING*
+## *Crowdfunding for a given project or cause.*
 
- Crowdfunding a given project or cause.
 
-### MVP
+## MVP
 
-1. Users visit the website and read about the project/cause raising funds.
+### 1. Users visit the website and read about the project/cause raising funds.
 
-2. The website displays: amount currently donated, minimum requirement for the project/cause to kick-off, an optimal target goal.
+### 2. The website displays: balance of funds donated, minimum funds required to kick-off the project/cause, an optimal target goal.
 
-     `function campaignstatus() public view;`
+* `function campaignstatus() public view return(uint campaignbalance, uint minfunds, uint targetgoal );`
 
-3. Users willing to participate in the crowdfunding click on the "Donate" button
+### 3. Users willing to participate in the crowdfunding click on the "Donate" button.
+### 4. Metamask authentication triggers and allow the user to send ETH to the contact address.
+* `function deposit() public payable return(uint256 balance);`
+* `function withdrawfunds() owner return(bool status);`
+* `function refund(address donor) public owner);`
+* `modifier owner();`
 
-4. Metamask authentication triggers and allow the user to send ETH to the contact address
+### 5. Upon succesful transaction the balance updates on the website
 
-    `function deposit() public payable return(uint256 balance);`
+* `event depositEvent(address donator, uint256 amount);`
 
-    `function withdrawfunds() owner return(bool status);`
+## ADD-ONS
 
-    `function refund() private return (bool status);`
+### 1.  Refund donors if the campaign minimum requirement is not reached by end of fundraising campaign,
 
-    `modifier owner();`
+* Introduces a timebased dependency on the smart contract, which may introduce security weekness if based on block number or epoc.
+* What is the proper way of running a countdown counter? Oracle to check time?
 
-5. Upon succesful transaction the balance updates on the website
+### 2. ERC-20 airdropped
+ * creating an second contract for generating the ERC-20
+ * cross contract communication to trigger sending ERC-20 tokens to the donors upon succesful call to `Deposit()`
 
-    `event depositEvent(address donator, uint256 amount);`
+### 3. Donation matching up to 5k USD to offer a charity
 
-### ADD-ONS
+### 4. Donors Leaderboard
+* one way is to keep a public map of all donors and funds sent.
+I'd be curious to see if by using the contract address we could fecth all transactions that sent Eth to the contract.
+Likely not the most efficient way though
 
-0. Allow several fundraising campaigns.
 
-    `function createCampaign(uint256 viableMinimum, uint256 goal) public owner`
+### 5. Allow several fundraising campaigns.
 
-1. Send NFT perks to every donor's wallet address
+ * `function createCampaign(uint256 viableMinimum, uint256 goal) public owner`
+ * Makes the frontend more complicated,
+ * Requires a map to keep track of funds for each campaigns
 
-2. If minimum requirement is not reached by end of fundraising campaign, funds are sent back to the donator
-
-3. Donation matching up to 5k USD to offer a charity
-
-5. Donors Leaderboard
-
-6. ERC-20 airdropped
+### 6. Send NFT perks to every donor's wallet address
